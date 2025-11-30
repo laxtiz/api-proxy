@@ -1,0 +1,24 @@
+# Apache .htaccess configuration for PHP Proxy
+# This file enables URL rewriting
+
+# Enable mod_rewrite if not already enabled
+RewriteEngine On
+
+# Skip existing files and directories to serve them directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other requests to proxy.php with QSA (Query String Append)
+RewriteRule .* proxy.php [L,QSA]
+
+# Set longer timeout for streaming responses
+Timeout 300
+
+# Optional: Disable output compression (prevents buffering with real-time responses)
+# SetOutputFilter DEFLATE
+
+# Optional: Increase PHP memory limit
+php_value memory_limit 256M
+
+# Optional: Increase PHP max execution time for long-running requests
+php_value max_execution_time 300
