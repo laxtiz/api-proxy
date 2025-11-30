@@ -11,14 +11,3 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Rewrite all other requests to proxy.php with QSA (Query String Append)
 RewriteRule .* proxy.php [L,QSA]
 
-# Set longer timeout for streaming responses
-Timeout 300
-
-# Optional: Disable output compression (prevents buffering with real-time responses)
-# SetOutputFilter DEFLATE
-
-# Optional: Increase PHP memory limit
-php_value memory_limit 256M
-
-# Optional: Increase PHP max execution time for long-running requests
-php_value max_execution_time 300
